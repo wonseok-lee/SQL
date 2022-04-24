@@ -10,7 +10,6 @@
 SELECT *
 FROM employees A
 
-Where A.salary = (
     SELECT salary
     FROM emplyess
     WHERE last_name='De Haan'
@@ -126,3 +125,69 @@ WHERE department_name IN (SELECT department_id
                             FROM departments
                             WHERE dpartment_name='Sample_Dept');
 ```
+ &nbsp;
+
+# DDL
+
+테이블과 관련 열을 생성하고 변경하고 삭제하는 명령어를 Data Definition Language라고 함.
+ &nbsp;
+## CREATE
+새로운 태이븡르 생성
+
+```SQL
+CREATE TABLE sample_product
+        (
+            product_id number,
+            product_name varchar2(30),
+            manu_date date
+        );
+```
+값 INSERT
+```SQL
+INSERT INTO sample_product VALUES (1, 'television', to_date('140101', 'YYMMDD'))
+INSERT INTO sample_product VALUES (2, 'washer', to_date('150101', 'YYMMDD'))
+INSERT INTO sample_product VALUES (3, 'cleaner', to_date('160101', 'YYMMDD'))
+```
+&nbsp;
+## ALTER
+
+이미 생성한 테이블에 열을 추가, 변경, 삭제.
+&nbsp;
+### 열 추가
+```SQL
+ALTER TABLE sample_product ADD (factory varchar(10));
+```
+&nbsp;
+### 열 수정
+```SQL
+ALTER TABLE sample_product MODIFY (factory char(10));
+```
+&nbsp;
+### 열 이름 바꾸기
+
+```SQL
+ALTER TABLE sample_product RENAME COLUMN factory to factory_name;
+```
+&nbsp;
+### 열 삭제하기
+
+```SQL
+ALTER TABLE sample_product DROP COUMN factory_name; 
+```
+&nbsp;
+## TRUNCATE
+
+테이블의 데이터를 모두 삭제하고 사용하던 기억 공간도 해제. 테이블에 생성된 인덱스와 같은 객체도 같이 삭제.
+
+```SQL
+TRUNCATE TABLE sample_product;
+```
+&nbsp;
+## DROP
+
+테이블을 완전히 삭제.
+
+```SQL
+DROP TABLE sample_product;
+```
+
